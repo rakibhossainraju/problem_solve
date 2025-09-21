@@ -1,14 +1,21 @@
 #![allow(dead_code, unused_imports, unused_variables, unused_mut)]
-
+mod router;
+mod spreadsheet;
 mod task_manager_system;
-use core::task;
 
+use router::Router;
+use spreadsheet::Spreadsheet;
 use task_manager_system::TaskManager;
 
 fn main() {
-    let tasks = [[3, 12, 11], [6, 2, 46], [2, 1, 46], [5, 23, 21]]
-        .map(|x| x.to_vec())
-        .to_vec();
-    let mut task_manager = TaskManager::new(tasks);
-    dbg!(&task_manager);
+    let mut router = Router::new(3);
+    router.add_packet(1, 4, 90);
+    router.add_packet(2, 5, 90);
+    router.add_packet(1, 4, 90);
+    router.add_packet(3, 5, 95);
+    router.add_packet(4, 5, 105);
+    router.forward_packet();
+    router.add_packet(5, 2, 110);
+    router.get_count(5, 100, 110);
+    dbg!(&router);
 }
