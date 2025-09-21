@@ -60,7 +60,10 @@ impl TaskManager {
     pub fn edit(&mut self, task_id: i32, new_priority: i32) {
         if let Some(task) = self.tasks.get_mut(&task_id) {
             task.priority = new_priority;
-            self.queue.push(QueueItem { priority: new_priority, task_id });
+            self.queue.push(QueueItem {
+                priority: new_priority,
+                task_id,
+            });
         }
     }
 
