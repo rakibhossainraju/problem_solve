@@ -1,9 +1,11 @@
 #![allow(dead_code, unused_imports, unused_variables, unused_mut)]
 mod router;
+mod solution;
 mod spreadsheet;
 mod task_manager_system;
 
 use router::Router;
+use solution::Solution;
 use spreadsheet::Spreadsheet;
 use task_manager_system::TaskManager;
 

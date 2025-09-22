@@ -1,5 +1,6 @@
 use std::collections::{HashMap, HashSet, VecDeque};
 
+#[derive(Debug)]
 pub struct Router {
     memory_limit: i32,
     packet_map: HashSet<String>,
@@ -40,14 +41,14 @@ impl Router {
         if let Some((source, destination, timestamp)) = self.packet_queue.pop_front() {
             let key = Self::create_key(source, destination, timestamp);
             self.packet_map.remove(&key);
-            
+
             // Remove only the first occurrence of this timestamp
             if let Some(times) = self.dest_in_time_map.get_mut(&destination) {
                 if let Some(pos) = times.iter().position(|&t| t == timestamp) {
                     times.remove(pos);
                 }
             }
-            
+
             vec![source, destination, timestamp]
         } else {
             vec![]
